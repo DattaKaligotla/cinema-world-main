@@ -1,0 +1,13 @@
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:17:16: Implicit definition should have explicit type (inferred akka.actor.ActorSystem) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val system = ActorSystem("cinema-world-system")[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:18:16: Implicit definition should have explicit type (inferred akka.stream.ActorMaterializer) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val materializer = ActorMaterializer()[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:19:16: Implicit definition should have explicit type (inferred scala.concurrent.ExecutionContextExecutor) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val executionContext = system.dispatcher[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m1 deprecation (since 10.2.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0m1 deprecation (since 2.6.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0m2 deprecations in total; re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0m6 warnings found[0m

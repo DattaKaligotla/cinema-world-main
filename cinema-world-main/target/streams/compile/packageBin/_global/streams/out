@@ -1,0 +1,33 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\cinema-world_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Booking$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Booking$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Booking.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Booking.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\CinemaWorldApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\CinemaWorldApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\CinemaWorldApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\CinemaWorldApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\CinemaWorldApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\CinemaWorldApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Data$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Data$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Data.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Data.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\JsonSupport.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\JsonSupport.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Movie$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Movie$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Movie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Movie.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Showtime$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Showtime$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com\example\cinemaworld\Showtime.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\target\scala-2.13\classes\com\example\cinemaworld\Showtime.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
