@@ -1,16 +1,16 @@
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:13:16: Implicit definition should have explicit type (inferred akka.actor.ActorSystem) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:15:16: Implicit definition should have explicit type (inferred akka.actor.ActorSystem) [quickfixable][0m
 [0m[[0m[33mwarn[0m] [0m[0m  implicit val system = ActorSystem("cinemaWorldSystem")[0m
 [0m[[0m[33mwarn[0m] [0m[0m               ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:14:16: Implicit definition should have explicit type (inferred akka.stream.ActorMaterializer) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:16:16: Implicit definition should have explicit type (inferred akka.stream.ActorMaterializer) [quickfixable][0m
 [0m[[0m[33mwarn[0m] [0m[0m  implicit val materializer = ActorMaterializer()[0m
 [0m[[0m[33mwarn[0m] [0m[0m               ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:17:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Movie]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:19:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Movie]) [quickfixable][0m
 [0m[[0m[33mwarn[0m] [0m[0m  override implicit val movieFormat = jsonFormat4(Movie)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:18:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Showtime]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:20:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Showtime]) [quickfixable][0m
 [0m[[0m[33mwarn[0m] [0m[0m  override implicit val showtimeFormat = jsonFormat4(Showtime)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:19:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Reservation]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:21:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Reservation]) [quickfixable][0m
 [0m[[0m[33mwarn[0m] [0m[0m  override implicit val reservationFormat = jsonFormat3(Reservation)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m1 deprecation (since 10.2.0)[0m
