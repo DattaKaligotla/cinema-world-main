@@ -50,6 +50,13 @@ object CinemaWorldApp extends App with JsonSupport {
           }
         }
       },
+      path("movie" / IntNumber) { movieId =>
+      get {
+          onSuccess(AppDatabase.getShowtimesByMovieId(movieId)) { showtimes =>
+            complete(showtimes)
+          }
+        }
+      },
       // Route for fetching showtime details by ID
       path(IntNumber) { showtimeId =>
         get {
