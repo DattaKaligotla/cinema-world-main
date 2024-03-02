@@ -11,9 +11,18 @@
 [0m[[0m[33mwarn[0m] [0m[0m  override implicit val showtimeFormat = jsonFormat4(Showtime)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
 [0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\CinemaWorldApp.scala:21:25: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Reservation]) [quickfixable][0m
-[0m[[0m[33mwarn[0m] [0m[0m  override implicit val reservationFormat = jsonFormat3(Reservation)[0m
+[0m[[0m[33mwarn[0m] [0m[0m  override implicit val reservationFormat = jsonFormat4(Reservation)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\JsonSupport.scala:7:16: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Movie]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val movieFormat = jsonFormat4(Movie)[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\JsonSupport.scala:8:16: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Showtime]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val showtimeFormat = jsonFormat4(Showtime)[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\main\scala\com\example\cinemaworld\JsonSupport.scala:9:16: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[com.example.cinemaworld.Reservation]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val reservationFormat = jsonFormat4(Reservation)[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m1 deprecation (since 10.2.0)[0m
 [0m[[0m[33mwarn[0m] [0m[0m1 deprecation (since 2.6.0)[0m
 [0m[[0m[33mwarn[0m] [0m[0m2 deprecations in total; re-run with -deprecation for details[0m
-[0m[[0m[33mwarn[0m] [0m[0m8 warnings found[0m
+[0m[[0m[33mwarn[0m] [0m[0m11 warnings found[0m

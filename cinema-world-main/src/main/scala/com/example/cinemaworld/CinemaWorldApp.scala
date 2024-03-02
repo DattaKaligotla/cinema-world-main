@@ -18,7 +18,7 @@ object CinemaWorldApp extends App with JsonSupport {
   // JSON Formats
   override implicit val movieFormat = jsonFormat4(Movie)
   override implicit val showtimeFormat = jsonFormat4(Showtime)
-  override implicit val reservationFormat = jsonFormat3(Reservation)
+  override implicit val reservationFormat = jsonFormat4(Reservation)
 
   val route: Route =
   pathPrefix("movies") {
@@ -75,7 +75,42 @@ object CinemaWorldApp extends App with JsonSupport {
         }
       }
     )
-  }
+  }~
+  pathPrefix("reservations") {
+  concat(
+    // Route for listing all reservations
+    pathEnd {
+      get {
+        complete(AppDatabase.getAllReservations())
+      }
+    },
+    // Route for adding a new reservation
+    post {
+      entity(as[Reservation]) { reservation =>
+        onSuccess(AppDatabase.addReservation(reservation)) { _ =>
+          complete(StatusCodes.Created, "Reservation added successfully")
+        }
+      }
+    },
+    // Route for fetching a reservation by ID
+    path(IntNumber) { id =>
+      get {
+        onSuccess(AppDatabase.getReservationById(id)) {
+          case Some(reservation) => complete(reservation)
+          case None => complete(StatusCodes.NotFound, "Reservation not found")
+        }
+      }
+    },
+    // Route for fetching reservations by showtime ID
+    pathPrefix("showtime" / IntNumber) { showtimeId =>
+      get {
+        onSuccess(AppDatabase.getReservationsByShowtime(showtimeId)) { reservations =>
+          complete(reservations)
+        }
+      }
+    }
+  )
+}
      
 
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)

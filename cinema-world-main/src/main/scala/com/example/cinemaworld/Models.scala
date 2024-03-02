@@ -17,7 +17,7 @@ case class Showtime(
     theater: String
 )
 
-case class Reservation(id: Option[Int], showtimeId: Int, quantity: Int)
+case class Reservation(reservationId: Option[Int], showtimeId: Int, customerName: String, quantity: Int)
 
 trait DatabaseSchema {
   class Movies(tag: Tag) extends Table[Movie](tag, "movies") {
@@ -54,15 +54,17 @@ trait DatabaseSchema {
   }
 
   class Reservations(tag: Tag) extends Table[Reservation](tag, "reservations") {
-    def id: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
+    def reservationId: Rep[Int] = column[Int]("reservation_id", O.PrimaryKey, O.AutoInc)
     def showtimeId: Rep[Int] = column[Int]("showtime_id")
+    def customerName: Rep[String] = column[String]("customer_name") // Add this line
     def quantity: Rep[Int] = column[Int]("quantity")
     def showtimeFK: ForeignKeyQuery[Showtimes, Showtime] =
       foreignKey("showtime_fk", showtimeId, TableQuery[Showtimes])(_.showtime_id)
 
     override def * : ProvenShape[Reservation] =
-      (id.?, showtimeId, quantity) <> (Reservation.tupled, Reservation.unapply)
+      (reservationId.?, showtimeId, customerName, quantity) <> (Reservation.tupled, Reservation.unapply) // Update this line
   }
+
 
   val movies = TableQuery[Movies]
   val showtimes = TableQuery[Showtimes]

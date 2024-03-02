@@ -36,10 +36,29 @@ object AppDatabase extends DatabaseSchema {
     val insertAction = showtimes += showtime
     db.run(insertAction)
   }
+  def getAllReservations(): Future[Seq[Reservation]] = {
+    db.run(reservations.result)
+  }
+
+  // Create a new reservation
+  def addReservation(newReservation: Reservation): Future[Int] = {
+    db.run(reservations returning reservations.map(_.reservationId) += newReservation)
+  }
+
+  // Fetch a reservation by its ID
+  def getReservationById(reservationId: Int): Future[Option[Reservation]] = {
+    db.run(reservations.filter(_.reservationId === reservationId).result.headOption)
+  }
+
+  // Fetch reservations by showtime ID
+  def getReservationsByShowtime(showtimeId: Int): Future[Seq[Reservation]] = {
+    db.run(reservations.filter(_.showtimeId === showtimeId).result)
+  }
+ 
+}
 
   
 
 
 
   // Implement additional methods as needed
-}
