@@ -1,4 +1,5 @@
 package com.example.cinemaworld
+import java.time.LocalDateTime
 
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.{ProvenShape, ForeignKeyQuery}
@@ -12,9 +13,10 @@ case class Movie(
 case class Showtime(
     id: Option[Int],
     movieId: Int,
-    startTime: String,
+    startTime: String, // Changed to LocalDateTime
     theater: String
 )
+
 case class Reservation(id: Option[Int], showtimeId: Int, quantity: Int)
 
 trait DatabaseSchema {
@@ -38,7 +40,7 @@ trait DatabaseSchema {
   }
 
   class Showtimes(tag: Tag) extends Table[Showtime](tag, "showtimes") {
-    def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
+    def showtime_id = column[Int]("showtime_id", O.PrimaryKey, O.AutoInc)
     def movieId = column[Int]("movie_id")
     def startTime = column[String]("start_time")
     def theater = column[String]("theater")
@@ -48,7 +50,7 @@ trait DatabaseSchema {
         _.movieId
       ) // Corrected to _.movieId
     override def * =
-      (id.?, movieId, startTime, theater) <> (Showtime.tupled, Showtime.unapply)
+      (showtime_id.?, movieId, startTime, theater) <> (Showtime.tupled, Showtime.unapply)
   }
 
   class Reservations(tag: Tag) extends Table[Reservation](tag, "reservations") {
@@ -56,7 +58,7 @@ trait DatabaseSchema {
     def showtimeId: Rep[Int] = column[Int]("showtime_id")
     def quantity: Rep[Int] = column[Int]("quantity")
     def showtimeFK: ForeignKeyQuery[Showtimes, Showtime] =
-      foreignKey("showtime_fk", showtimeId, TableQuery[Showtimes])(_.id)
+      foreignKey("showtime_fk", showtimeId, TableQuery[Showtimes])(_.showtime_id)
 
     override def * : ProvenShape[Reservation] =
       (id.?, showtimeId, quantity) <> (Reservation.tupled, Reservation.unapply)

@@ -21,41 +21,55 @@ object CinemaWorldApp extends App with JsonSupport {
   override implicit val reservationFormat = jsonFormat3(Reservation)
 
   val route: Route =
-    pathPrefix("movies") {
-      concat(
-        // Route for listing all movies
-        pathEnd {
-          get {
-            complete(AppDatabase.listAllMovies())
-          }
-        },
-        // Route for fetching movie details by ID
-        path(IntNumber) { id =>
-          get {
-            onSuccess(AppDatabase.getMovieDetailsById(id)) {
-              case Some(movie) => complete(movie)
-              case None => complete(StatusCodes.NotFound, "Movie not found")
-            }
-          }
+  pathPrefix("movies") {
+    concat(
+      // Route for listing all movies
+      pathEnd {
+        get {
+          complete(AppDatabase.listAllMovies())
         }
-      )
-    } ~
-      path("bookings") {
-        post {
-          entity(as[Reservation]) { booking =>
-            onSuccess(
-              AppDatabase.bookTickets(booking.showtimeId, booking.quantity)
-            ) {
-              case true => complete(StatusCodes.Created, "Booking successful")
-              case false =>
-                complete(
-                  StatusCodes.InternalServerError,
-                  "Could not book tickets"
-                )
-            }
+      },
+      // Route for fetching movie details by ID
+      path(IntNumber) { id =>
+        get {
+          onSuccess(AppDatabase.getMovieDetailsById(id)) {
+            case Some(movie) => complete(movie)
+            case None        => complete(StatusCodes.NotFound, "Movie not found")
           }
         }
       }
+    )
+  } ~
+ pathPrefix("showtimes") {
+    concat(
+      // Route for listing all showtimes
+      pathEnd {
+        get {
+          onSuccess(AppDatabase.getAllShowtimes) { showtimes =>
+            complete(showtimes)
+          }
+        }
+      },
+      // Route for fetching showtime details by ID
+      path(IntNumber) { showtimeId =>
+        get {
+          onSuccess(AppDatabase.getShowtimeById(showtimeId)) {
+            case Some(showtime) => complete(showtime)
+            case None           => complete(StatusCodes.NotFound, "Showtime not found")
+          }
+        }
+      },
+      // Route for adding a new showtime
+      post {
+        entity(as[Showtime]) { showtime =>
+          onSuccess(AppDatabase.addShowtime(showtime)) { _ =>
+            complete(StatusCodes.Created, "Showtime added successfully")
+          }
+        }
+      }
+    )
+  }
+     
 
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
   println(s"Server online at http://localhost:8080/")

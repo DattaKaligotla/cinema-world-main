@@ -8,7 +8,7 @@ CREATE TABLE movies (
 CREATE TABLE showtimes (
     showtime_id SERIAL PRIMARY KEY,
     movie_id INT NOT NULL,
-    start_time TIMESTAMP NOT NULL,
+    start_time VARCHAR(255) NOT NULL,
     theater VARCHAR(255) NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
 );

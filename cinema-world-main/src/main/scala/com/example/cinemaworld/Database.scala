@@ -14,26 +14,32 @@ object AppDatabase extends DatabaseSchema {
   )
 
   def listAllMovies(): Future[Seq[Movie]] = db.run(movies.result)
+
   def getMovieDetailsById(movieId: Int): Future[Option[Movie]] = {
     val query = movies.filter(_.movieId === movieId).result.headOption
     db.run(query)
   }
 
-  def bookTickets(showtimeId: Int, quantity: Int): Future[Boolean] = {
-    // Assuming Reservation(id: Option[Int], showtimeId: Int, quantity: Int)
-    // Adjust according to your actual Reservation case class and Reservations table schema
-    val action = reservations.map(r =>
-      (r.showtimeId, r.quantity)
-    ) returning reservations.map(_.id) += (showtimeId, quantity)
+  def getAllShowtimes: Future[Seq[Showtime]] = db.run(showtimes.result)
 
-    db.run(action)
-      .map { case _ =>
-        true // Successfully inserted
-      }
-      .recover { case _: Exception =>
-        false // Failed to insert
-      }
+  def getShowtimeById(showtimeId: Int): Future[Option[Showtime]] = {
+    val query = showtimes.filter(_.showtime_id === showtimeId).result.headOption
+    db.run(query)
   }
+
+  def getShowtimesByMovieId(movieId: Int): Future[Seq[Showtime]] = {
+    val query = showtimes.filter(_.movieId === movieId).result
+    db.run(query)
+  }
+
+  def addShowtime(showtime: Showtime): Future[Int] = {
+    val insertAction = showtimes += showtime
+    db.run(insertAction)
+  }
+
+  
+
+
 
   // Implement additional methods as needed
 }
