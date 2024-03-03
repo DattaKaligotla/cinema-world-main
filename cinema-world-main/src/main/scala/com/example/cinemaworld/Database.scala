@@ -40,10 +40,23 @@ object AppDatabase extends DatabaseSchema {
     db.run(query)
   }
 
-  def addShowtime(showtime: Showtime): Future[Int] = {
-    val insertAction = showtimes += showtime
-    db.run(insertAction)
+  def addShowtime(showtime: Showtime): Future[String] = {
+    val movieExistsQuery = movies.filter(_.movieId === showtime.movieId).exists.result
+
+    val action = for {
+      movieExists <- movieExistsQuery
+      result <- if (movieExists) {
+        (showtimes += showtime).map(_ => "Showtime added successfully")
+      } else {
+        DBIO.successful("Movie ID does not exist")
+      }
+    } yield result
+
+    db.run(action.transactionally).recover {
+      case ex: Exception => s"Failed to add showtime: ${ex.getMessage}"
+    }
   }
+
   def getAllReservations(): Future[Seq[Reservation]] = {
     db.run(reservations.result)
   }
