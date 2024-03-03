@@ -13,11 +13,13 @@ case class Movie(
 case class Showtime(
     id: Option[Int],
     movieId: Int,
-    startTime: String, // Changed to LocalDateTime
-    theater: String
+    startTime: String, // Assuming you'll handle the conversion from String to LocalDateTime elsewhere
+    theater: String,
+    totalCapacity: Int // New field
 )
 
-case class Reservation(reservationId: Option[Int], showtimeId: Int, customerName: String, quantity: Int)
+case class Reservation(reservationId: Option[Int], showtimeId: Int, customerName: String, quantity: Int, totalCharge: Float, isCancelled: Boolean)
+
 
 trait DatabaseSchema {
   class Movies(tag: Tag) extends Table[Movie](tag, "movies") {
@@ -49,8 +51,8 @@ trait DatabaseSchema {
       foreignKey("movie_fk", movieId, TableQuery[Movies])(
         _.movieId
       ) // Corrected to _.movieId
-    override def * =
-      (showtime_id.?, movieId, startTime, theater) <> (Showtime.tupled, Showtime.unapply)
+    def totalCapacity = column[Int]("total_capacity") // New column for total capacity
+    override def * = (showtime_id.?, movieId, startTime, theater, totalCapacity) <> (Showtime.tupled, Showtime.unapply)
   }
 
   class Reservations(tag: Tag) extends Table[Reservation](tag, "reservations") {
@@ -61,8 +63,10 @@ trait DatabaseSchema {
     def showtimeFK: ForeignKeyQuery[Showtimes, Showtime] =
       foreignKey("showtime_fk", showtimeId, TableQuery[Showtimes])(_.showtime_id)
 
-    override def * : ProvenShape[Reservation] =
-      (reservationId.?, showtimeId, customerName, quantity) <> (Reservation.tupled, Reservation.unapply) // Update this line
+    def isCancelled = column[Boolean]("is_cancelled") // New column for cancellation status
+    def totalCharge = column[Float]("total_charge")
+  // Ensure the type here matches the case class
+    override def * = (reservationId.?, showtimeId, customerName, quantity, totalCharge, isCancelled) <> ((Reservation.apply _).tupled, Reservation.unapply)
   }
 
 

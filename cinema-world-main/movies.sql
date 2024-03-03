@@ -20,3 +20,7 @@ CREATE TABLE reservations (
     quantity INT NOT NULL,
     FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
 );
+ALTER TABLE showtimes ADD COLUMN total_capacity INT;
+
+ALTER TABLE reservations ADD COLUMN total_charge FLOAT DEFAULT 0;
+ALTER TABLE reservations ADD COLUMN is_cancelled BOOLEAN DEFAULT FALSE;

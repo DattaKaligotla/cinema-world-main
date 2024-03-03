@@ -11,107 +11,130 @@ import spray.json.DefaultJsonProtocol._
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import spray.json.RootJsonFormat
+
 object CinemaWorldApp extends App with JsonSupport {
   implicit val system = ActorSystem("cinemaWorldSystem")
   implicit val materializer = ActorMaterializer()
 
   // JSON Formats
   override implicit val movieFormat = jsonFormat4(Movie)
-  override implicit val showtimeFormat = jsonFormat4(Showtime)
-  override implicit val reservationFormat = jsonFormat4(Reservation)
-
+  override implicit val showtimeFormat = jsonFormat5(Showtime)
+  override implicit val reservationFormat = jsonFormat6(Reservation)
   val route: Route =
-  pathPrefix("movies") {
-    concat(
-      // Route for listing all movies
-      pathEnd {
-        get {
-          complete(AppDatabase.listAllMovies())
-        }
-      },
-      // Route for fetching movie details by ID
-      path(IntNumber) { id =>
-        get {
-          onSuccess(AppDatabase.getMovieDetailsById(id)) {
-            case Some(movie) => complete(movie)
-            case None        => complete(StatusCodes.NotFound, "Movie not found")
-          }
-        }
-      }
-    )
-  } ~
- pathPrefix("showtimes") {
-    concat(
-      // Route for listing all showtimes
-      pathEnd {
-        get {
-          onSuccess(AppDatabase.getAllShowtimes) { showtimes =>
-            complete(showtimes)
-          }
-        }
-      },
-      path("movie" / IntNumber) { movieId =>
-      get {
-          onSuccess(AppDatabase.getShowtimesByMovieId(movieId)) { showtimes =>
-            complete(showtimes)
-          }
-        }
-      },
-      // Route for fetching showtime details by ID
-      path(IntNumber) { showtimeId =>
-        get {
-          onSuccess(AppDatabase.getShowtimeById(showtimeId)) {
-            case Some(showtime) => complete(showtime)
-            case None           => complete(StatusCodes.NotFound, "Showtime not found")
-          }
-        }
-      },
-      // Route for adding a new showtime
-      post {
-        entity(as[Showtime]) { showtime =>
-          onSuccess(AppDatabase.addShowtime(showtime)) { _ =>
-            complete(StatusCodes.Created, "Showtime added successfully")
-          }
-        }
-      }
-    )
-  }~
-  pathPrefix("reservations") {
   concat(
-    // Route for listing all reservations
-    pathEnd {
-      get {
-        complete(AppDatabase.getAllReservations())
-      }
-    },
-    // Route for adding a new reservation
-    post {
-      entity(as[Reservation]) { reservation =>
-        onSuccess(AppDatabase.addReservation(reservation)) { _ =>
-          complete(StatusCodes.Created, "Reservation added successfully")
+    pathPrefix("movies") {
+      concat(
+        // List all movies
+        pathEnd {
+          concat(
+            get {
+              complete(AppDatabase.listAllMovies())
+            },
+            // Add a new movie
+            post {
+              entity(as[Movie]) { movie =>
+                onSuccess(AppDatabase.addMovie(movie)) { _ =>
+                  complete(StatusCodes.Created, "Movie added successfully")
+                }
+              }
+            }
+          )
+        },
+        // Fetch movie details by ID
+        path(IntNumber) { id =>
+          get {
+            onSuccess(AppDatabase.getMovieDetailsById(id)) {
+              case Some(movie) => complete(movie)
+              case None => complete(StatusCodes.NotFound, "Movie not found")
+            }
+          }
         }
-      }
+      )
     },
-    // Route for fetching a reservation by ID
-    path(IntNumber) { id =>
-      get {
-        onSuccess(AppDatabase.getReservationById(id)) {
-          case Some(reservation) => complete(reservation)
-          case None => complete(StatusCodes.NotFound, "Reservation not found")
+    pathPrefix("showtimes") {
+      concat(
+        // List all showtimes
+        pathEnd {
+          get {
+            complete(AppDatabase.getAllShowtimes)
+          }
+        },
+        // Fetch showtimes by movie ID
+        path("movie" / IntNumber) { movieId =>
+          get {
+            onSuccess(AppDatabase.getShowtimesByMovieId(movieId)) { showtimes =>
+              complete(showtimes)
+            }
+          }
+        },
+        // Fetch showtime details by ID
+        path(IntNumber) { showtimeId =>
+          get {
+            onSuccess(AppDatabase.getShowtimeById(showtimeId)) {
+              case Some(showtime) => complete(showtime)
+              case None => complete(StatusCodes.NotFound, "Showtime not found")
+            }
+          }
+        },
+        // Add a new showtime
+        post {
+          entity(as[Showtime]) { showtime =>
+            onSuccess(AppDatabase.addShowtime(showtime)) { _ =>
+              complete(StatusCodes.Created, "Showtime added successfully")
+            }
+          }
         }
-      }
+      )
     },
-    // Route for fetching reservations by showtime ID
-    pathPrefix("showtime" / IntNumber) { showtimeId =>
-      get {
-        onSuccess(AppDatabase.getReservationsByShowtime(showtimeId)) { reservations =>
-          complete(reservations)
+    pathPrefix("reservations") {
+      concat(
+        // List all reservations
+        pathEnd {
+          get {
+            complete(AppDatabase.getAllReservations())
+          }
+        },
+        // Add a new reservation with total charge calculation
+        post {
+          entity(as[Reservation]) { reservation =>
+            onSuccess(AppDatabase.addReservation(reservation)) { confirmationMessage =>
+              complete(StatusCodes.Created, confirmationMessage)
+            }
+          }
+        },
+        // Fetch a reservation by ID
+        path(IntNumber) { id =>
+          get {
+            onSuccess(AppDatabase.getReservationById(id)) {
+              case Some(reservation) => complete(reservation)
+              case None => complete(StatusCodes.NotFound, "Reservation not found")
+            }
+          }
+        },
+        // Fetch reservations by showtime ID
+        pathPrefix("showtime" / IntNumber) { showtimeId =>
+          get {
+            onSuccess(AppDatabase.getReservationsByShowtime(showtimeId)) { reservations =>
+              complete(reservations)
+            }
+          }
+        },
+        // Cancel a reservation with penalty calculation
+        path("cancel" / IntNumber) { reservationId =>
+          post {
+            onSuccess(AppDatabase.cancelReservation(reservationId)) { result =>
+              complete(StatusCodes.OK, s"Reservation cancelled. $result")
+            }
+          }
         }
-      }
+      )
     }
   )
-}
-     
+
+
+
+  
 
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
   println(s"Server online at http://localhost:8080/")
