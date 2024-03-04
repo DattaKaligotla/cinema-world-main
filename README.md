@@ -24,7 +24,7 @@ After you cd into the clone repo, cd again into `cinema-world-main`, which has t
   - **AppDatabase.scala**: Contains the database operations and business logic.
   - **CinemaWorldApp.scala**: Defines the server and routes for the API.
   - **Models.scala**: Contains case classes for movies, showtimes, and reservations, and their corresponding Slick table mappings.
-- `src/main/resources/application.conf`: Configuration file for database connection settings.
+- `src/main/resources/application.conf`: Configuration file for database connection settings.(edit your config settings as you had setup for postgres there, I have detailed instructions below)
 - `src/test/scala/com/example/cinemaworld`: Contains ScalaTest unit tests for the application's core functionality and edge cases.
 ## API Endpoint Overview
 
