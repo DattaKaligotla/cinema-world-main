@@ -102,7 +102,11 @@ make sure to have
 psql -d cinema_world -U postgres -f init.sql
 ```
 ran first to have the values in the table to populate
-then run sbt run in terminal and after it is setup in `http://localhost:8080/`
+then run 
+```bash
+sbt run
+```
+in terminal and after it is setup in `http://localhost:8080/`
 
 open a new terminal and run curl commands based on the schema:
 here are examples of curl commands to play around with,
