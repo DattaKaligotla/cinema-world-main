@@ -124,7 +124,6 @@ curl -X POST http://localhost:8080/movies \
 ```bash
 curl http://localhost:8080/movies
 ```
-```bash
 
 ## Fetch Movie Details by ID
 ```bash
