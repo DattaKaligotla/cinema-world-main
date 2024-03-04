@@ -107,7 +107,7 @@ after that feel free to erase the tables to clean everything up, running
 ```bash
 psql -d cinema_world -U postgres -f erase.sql
 ```
-IMPORTANT: run `psql -d cinema_world -U postgres -f init.sql` to generate the tables again in postgres
+IMPORTANT: run `psql -d cinema_world -U postgres -f init.sql` to generate the tables again in postgres if you run erase, as you would need to generate those tables again
 
 ## Now for the Magic
 make sure to have
