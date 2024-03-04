@@ -15,7 +15,7 @@ make sure to have sbt and psql available in your enviornment setup, and preferab
 - **ScalaTest**: Testing tool for Scala and Java developers.
 - **PostgreSQL**: Database used for storing movies, showtimes, and reservations data.
 ## Docker + Docker Work
-I had the chance to make a container with all the dependencies I had setup and had pushed the work I had done to docker-branch, but because of permission issues
+I had the chance to make a container with all the dependencies I had setup and had pushed the work I had done to docker-branch(feel free to look at it), but because of permission issues
 in the Docker hub and possibly other issues, I could not have a working container solution that I had hoped for. Instead, I am writing a step by step 
 comprehensive setup for this project. Feel free to contact me for any assistance if roadblocks occur
 ## Project Structure
@@ -72,7 +72,7 @@ IMPORTANT: after using the erase.sql script(will get into it below), always run 
 ```bash
 psql -d cinema_world -U postgres -f init.sql
 ```
-### Test Business Functionality
+### Test Business Logic/Exhaustive tests that will hit a variety of test cases
 ```bash
 sbt test
 ```
