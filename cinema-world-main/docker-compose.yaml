@@ -1,0 +1,24 @@
+version: "3"
+services:
+  cinema-world-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=jdbc:postgresql://db:5432/cinema_world
+      - DB_USER=postgres
+      - DB_PASSWORD=fourarms
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: cinema_world
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: fourarms
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
