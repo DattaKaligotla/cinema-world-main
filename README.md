@@ -7,7 +7,7 @@ CinemaWorld is a Scala-based REST API project for managing a cinema platform, wh
 - Scala 2.13.x
 - sbt (Scala Build Tool)
 - PostgreSQL
-make sure to have sbt and psql available in your enviornment setup, and preferably in UNIX as I have handy-dandy scripts you could run
+- make sure to have sbt and psql available in your enviornment setup, and preferably in UNIX as I have handy-dandy scripts you could run
 ## Dependencies
 - **Akka HTTP**: Used for creating the REST API server.
 - **Slick**: Scala's functional relational mapping (FRM) library for interacting with the database in a functional style.
