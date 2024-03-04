@@ -65,17 +65,16 @@ CinemaWorld is a Scala-based REST API project for managing a cinema platform, wh
 ### Database Initialization
 Before running the application or tests, initialize the database schema by executing the `init.sql` script in your PostgreSQL database. This script will create the necessary tables and relationships:
 IMPORTANT : sql commands change "postgres" in the cmd script to whatever your superuser name is in postgres
-IMPORTANT: after using the erase.sql script, alsways run the init.sql script
-```sh
+IMPORTANT: after using the erase.sql script(will get into it below), always run the init.sql script
 psql -d cinema_world -U postgres -f init.sql
-## Test Business Functionality
+### Test Business Functionality
 sbt test
 ^this will test business functioanlity
 
-## Testing the API Endpoints
+### Testing the API Endpoints
 run this bash script in terminal to test the endpointsin conjunction to business logic
 Open a new terminal window and execute ./test_api.sh to test the API using curl commands. This script performs a series of automated tests for the API endpoints.
-## Viewing Data in the Database
+### Viewing Data in the Database
 After running that script, you can view the contents of the movies, showtimes, and reservations tables in the command line by running the provided SQL scripts:
 psql -d cinema_world -U postgres -f movies.sql
 psql -d cinema_world -U postgres -f showtimes.sql
