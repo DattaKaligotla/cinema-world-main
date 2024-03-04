@@ -12,6 +12,7 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import spray.json.RootJsonFormat
+import spray.json._
 
 object CinemaWorldApp extends App with JsonSupport {
   implicit val system = ActorSystem("cinemaWorldSystem")
@@ -21,6 +22,14 @@ object CinemaWorldApp extends App with JsonSupport {
   override implicit val movieFormat = jsonFormat4(Movie)
   override implicit val showtimeFormat = jsonFormat5(Showtime)
   override implicit val reservationFormat = jsonFormat6(Reservation)
+  implicit val intJsonFormat: RootJsonFormat[Int] = new RootJsonFormat[Int] {
+    def write(obj: Int): JsValue = JsNumber(obj)
+    def read(json: JsValue): Int = json match {
+      case JsNumber(num) => num.toInt
+      case _ => deserializationError("Int expected")
+    }
+  }
+  
   val route: Route =
   concat(
     pathPrefix("movies") {
@@ -80,8 +89,8 @@ object CinemaWorldApp extends App with JsonSupport {
         // Add a new showtime
         post {
           entity(as[Showtime]) { showtime =>
-            onSuccess(AppDatabase.addShowtime(showtime)) { _ =>
-              complete(StatusCodes.Created, "Showtime added successfully")
+            onSuccess(AppDatabase.addShowtime(showtime)) { showtimeId =>
+              complete(StatusCodes.Created, showtimeId.toString) // Convert Int ID to String for response
             }
           }
         }
@@ -98,8 +107,8 @@ object CinemaWorldApp extends App with JsonSupport {
         // Add a new reservation with total charge calculation
         post {
           entity(as[Reservation]) { reservation =>
-            onSuccess(AppDatabase.addReservation(reservation)) { confirmationMessage =>
-              complete(StatusCodes.Created, confirmationMessage)
+            onSuccess(AppDatabase.addReservation(reservation)) { reservationId =>
+              complete(StatusCodes.Created, reservationId.toString) // Convert Int ID to String for response
             }
           }
         },

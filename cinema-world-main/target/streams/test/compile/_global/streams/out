@@ -1,0 +1,16 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\test\scala\com\example\cinemaworld\Functions_Test.scala:123:27: value contains is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      assert(results.head.contains("Capacity exceeded"))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\test\scala\com\example\cinemaworld\Functions_Test.scala:124:25: value contains is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      assert(results(1).contains("Reservation added successfully"))[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\test\scala\com\example\cinemaworld\Functions_Test.scala:131:21: value contains is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      assert(result.contains("Movie ID does not exist"))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\test\scala\com\example\cinemaworld\Functions_Test.scala:153:33: value contains is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      assert(reservationResult1.contains("Reservation added successfully"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\sreek\Downloads\cinema-world-main\cinema-world-main\src\test\scala\com\example\cinemaworld\Functions_Test.scala:154:33: value contains is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      assert(reservationResult2.contains("Capacity exceeded"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m

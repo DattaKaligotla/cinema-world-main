@@ -9,7 +9,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.3.3",
   "org.postgresql" % "postgresql" % "42.2.18",
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.3",
-  "org.slf4j" % "slf4j-simple" % "1.7.25"
+  "org.slf4j" % "slf4j-simple" % "1.7.25",
+  "org.scalatest" %% "scalatest" % "3.2.9" % Test
 )
 
 lazy val root = (project in file("."))
