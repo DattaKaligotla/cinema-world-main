@@ -76,7 +76,7 @@ sbt test
 ^this will test business functioanlity
 
 ### Testing the API Endpoints
-run this bash script in terminal to test the endpointsin conjunction to business logic
+run this bash script in terminal to test the endpoint calls in conjunction with business logic
 Open a new terminal window and execute 
 ```bash
 ./test_api.sh
