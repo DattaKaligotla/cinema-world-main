@@ -1,4 +1,4 @@
-# CinemaWorld Project
+# CinemaWorld Project - Datta(Sreedatta) Kaligotla
 
 ## Overview
 CinemaWorld is a Scala-based REST API project for managing a cinema platform, where you can list movies, showtimes, and make reservations. The project utilizes Slick for database operations, Akka HTTP for the web server and routing, and ScalaTest for testing.
