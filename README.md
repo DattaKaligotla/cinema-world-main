@@ -1,5 +1,4 @@
 # CinemaWorld Project - Datta(Sreedatta) Kaligotla
-
 ## Overview
 CinemaWorld is a Scala-based REST API project for managing a cinema platform, where you can list movies, showtimes, and make reservations. The project utilizes Slick for database operations, Akka HTTP for the web server and routing, and ScalaTest for testing.
 
@@ -19,6 +18,8 @@ I had the chance to make a container with all the dependencies I had setup and h
 in the Docker hub and possibly other issues, I could not have a working container solution that I had hoped for. Instead, I am writing a step by step 
 comprehensive setup for this project. Feel free to contact me for any assistance if roadblocks occur
 ## Project Structure
+After you cd into the clone repo, cd again into `cinema-world-main`, which has the starting directory:
+
 - `src/main/scala/com/example/cinemaworld`
   - **AppDatabase.scala**: Contains the database operations and business logic.
   - **CinemaWorldApp.scala**: Defines the server and routes for the API.
