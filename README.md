@@ -109,8 +109,75 @@ sbt run
 in terminal and after it is setup in `http://localhost:8080/`
 
 open a new terminal and run curl commands based on the schema:
-here are examples of curl commands to play around with,
-anytime u want to see the tables, run these scripts to generate the tables
+here are examples of curl commands to play around with : 
+## Add a New Movie
+```bash
+curl -X POST http://localhost:8080/movies \
+-H "Content-Type: application/json" \
+-d '{"title": "Inception", "duration": 148, "rating": "PG-13"}'
+```
+## List All Movies
+```bash
+curl http://localhost:8080/movies
+```
+```bash
+
+## Fetch Movie Details by ID
+```bash
+
+curl http://localhost:8080/movies/{id}
+```
+## Add a New Showtime
+```bash
+
+curl -X POST http://localhost:8080/showtimes \
+-H "Content-Type: application/json" \
+-d '{"movieId": 1, "startTime": "2024-12-15T20:00", "theater": "IMAX", "totalCapacity": 200}'
+```
+## List All Showtimes
+```bash
+
+curl http://localhost:8080/showtimes
+```
+## Fetch Showtimes by Movie ID
+```bash
+
+curl http://localhost:8080/showtimes/movie/{movieId}
+```
+## Fetch Showtime Details by ID
+```bash
+
+curl http://localhost:8080/showtimes/{showtimeId}
+```
+## Add a New Reservation
+```bash
+
+curl -X POST http://localhost:8080/reservations \
+-H "Content-Type: application/json" \
+-d '{"showtimeId": 1, "customerName": "John Doe", "quantity": 2, "totalCharge": 40, "isCancelled": false}'
+```
+## List All Reservations
+```bash
+
+curl http://localhost:8080/reservations
+```
+## Fetch a Reservation by ID
+```bash
+
+curl http://localhost:8080/reservations/{id}
+```
+## Fetch Reservations by Showtime ID
+```bash
+
+curl http://localhost:8080/reservations/showtime/{showtimeId}
+```
+## Cancel a Reservation with Penalty Calculation
+```bash
+
+curl -X POST http://localhost:8080/reservations/cancel/{reservationId}
+
+```
+### Run these scripts again to see how the table looks
 ```bash
 psql -d cinema_world -U postgres -f movies.sql
 psql -d cinema_world -U postgres -f showtimes.sql
