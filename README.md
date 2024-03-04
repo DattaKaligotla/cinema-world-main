@@ -76,24 +76,26 @@ run this bash script in terminal to test the endpointsin conjunction to business
 Open a new terminal window and execute ./test_api.sh to test the API using curl commands. This script performs a series of automated tests for the API endpoints.
 ### Viewing Data in the Database
 After running that script, you can view the contents of the movies, showtimes, and reservations tables in the command line by running the provided SQL scripts:
-psql -d cinema_world -U postgres -f movies.sql
-psql -d cinema_world -U postgres -f showtimes.sql
-psql -d cinema_world -U postgres -f reservations.sql
+`psql -d cinema_world -U postgres -f movies.sql
+`psql -d cinema_world -U postgres -f showtimes.sql
+`psql -d cinema_world -U postgres -f reservations.sql
 
 after that feel free to erase the tables to clean everything up, running
+```bash
 psql -d cinema_world -U postgres -f erase.sql
 IMPORTANT: run psql -d cinema_world -U postgres -f init.sql to generate the tables again in postgres
 
 ## Now for the Magic
-make sure to have psql -d cinema_world -U postgres -f init.sql ran first to have the values in the table to populate
-then run sbt run in terminal and after it is setup in http://localhost:8080/
+make sure to have
+`psql -d cinema_world -U postgres -f init.sql ran first to have the values in the table to populate
+then run sbt run in terminal and after it is setup in `http://localhost:8080/
 
 open a new terminal and run curl commands based on the schema:
 here are examples of curl commands to play around with,
 anytime u want to see the tables, run these scripts to generate the tables
-psql -d cinema_world -U postgres -f movies.sql
-psql -d cinema_world -U postgres -f showtimes.sql
-psql -d cinema_world -U postgres -f reservations.sql
+`psql -d cinema_world -U postgres -f movies.sql
+`psql -d cinema_world -U postgres -f showtimes.sql
+`psql -d cinema_world -U postgres -f reservations.sql
 
 please reach out to me at sdkaligotla@gmail.com or at 240-474-7153, if you need assistance at all with anything here or if the documentation is unclear
 I had a great time working on this project and want it running it smoothly. Thank You!
