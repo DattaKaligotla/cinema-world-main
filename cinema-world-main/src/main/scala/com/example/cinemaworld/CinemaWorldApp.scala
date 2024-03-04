@@ -18,17 +18,14 @@ object CinemaWorldApp extends App with JsonSupport {
   implicit val system = ActorSystem("cinemaWorldSystem")
   implicit val materializer = ActorMaterializer()
 
-  // JSON Formats
-  override implicit val movieFormat = jsonFormat4(Movie)
-  override implicit val showtimeFormat = jsonFormat5(Showtime)
-  override implicit val reservationFormat = jsonFormat6(Reservation)
-  implicit val intJsonFormat: RootJsonFormat[Int] = new RootJsonFormat[Int] {
+ 
+  /*implicit val intJsonFormat: RootJsonFormat[Int] = new RootJsonFormat[Int] {
     def write(obj: Int): JsValue = JsNumber(obj)
     def read(json: JsValue): Int = json match {
       case JsNumber(num) => num.toInt
       case _ => deserializationError("Int expected")
     }
-  }
+  }*/
   
   val route: Route =
   concat(

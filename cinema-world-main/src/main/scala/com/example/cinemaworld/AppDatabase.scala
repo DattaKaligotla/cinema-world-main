@@ -1,6 +1,6 @@
 package com.example.cinemaworld
 import scala.concurrent.ExecutionContext.Implicits.global
-
+import com.typesafe.config.ConfigFactory
 import slick.jdbc.PostgresProfile.api._
 import scala.concurrent.Future
 import java.time.LocalDateTime
@@ -10,13 +10,24 @@ import scala.util.{Failure, Success}
 
 object AppDatabase extends DatabaseSchema {
   // Define your connection details directly
-  val db = Database.forURL(
-    url = "jdbc:postgresql://localhost:5432/cinema_world",
-    user = "postgres",
-    password = "fourarms",
-    driver = "org.postgresql.Driver"
-  )
+  val rootConfig = ConfigFactory.load()
 
+  // Access the nested configuration for the database
+  val dbConfig = rootConfig.getConfig("slick.dbs.default.db")
+
+  // Extract individual settings
+  val url = dbConfig.getString("url")
+  val user = dbConfig.getString("user")
+  val password = dbConfig.getString("password")
+  val driver = dbConfig.getString("driver")
+
+  // Create the database object
+  val db = Database.forURL(
+    url = url,
+    user = user,
+    password = password,
+    driver = driver
+  )
   def listAllMovies(): Future[Seq[Movie]] = db.run(movies.result)
   def addMovie(movie: Movie): Future[Int] = {
     val action = (movies returning movies.map(_.movieId)) += movie
@@ -99,12 +110,14 @@ object AppDatabase extends DatabaseSchema {
         val showtimeQuery = showtimes.filter(_.showtime_id === reservation.showtimeId).result.headOption
         showtimeQuery.flatMap {
           case Some(showtime) =>
-            val showtimeStart = LocalDateTime.parse(showtime.startTime) // Assuming startTime is properly formatted
+            val showtimeStart = LocalDateTime.parse(showtime.startTime) 
             if (ChronoUnit.HOURS.between(currentTime, showtimeStart) < 24) {
-              val updatedReservation = reservation.copy(totalCharge = 3, isCancelled = true) // Apply penalty
+              // Apply penalty
+              val updatedReservation = reservation.copy(totalCharge = 3, isCancelled = true)
               reservations.insertOrUpdate(updatedReservation).map(_ => "Reservation cancelled with penalty")
             } else {
-              val updatedReservation = reservation.copy(isCancelled = true) // No penalty
+              // No penalty, set totalCharge to 0
+              val updatedReservation = reservation.copy(totalCharge = 0, isCancelled = true)
               reservations.insertOrUpdate(updatedReservation).map(_ => "Reservation cancelled without penalty")
             }
           case None => DBIO.successful("Showtime not found")
@@ -116,6 +129,7 @@ object AppDatabase extends DatabaseSchema {
       case ex: Exception => s"Failed to cancel reservation: ${ex.getMessage}"
     }
   }
+
 
 
 

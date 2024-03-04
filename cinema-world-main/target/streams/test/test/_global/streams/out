@@ -1,4 +1,4 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.example.cinemaworld.AppDatabaseTests, org.scalatest.tools.Framework$$anon$1@6c79e5a2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.example.cinemaworld.AppDatabaseTests, org.scalatest.tools.Framework$$anon$1@5c20da4, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mAppDatabaseTests:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Add a movie and verify it is added[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Add a showtime for an existing movie and verify[0m[0m
@@ -12,16 +12,12 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- Ensure multiple reservations do not exceed showtime capacity[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Add 20 movies and verify they are added[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Add 20 showtimes for a single movie and verify they are added[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- Attempt to add reservations for past showtimes and verify failure *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  scala.concurrent.Future$$anon$3: Future.failed not completed with a throwable.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Ensure multiple reservations by the same customer do not exceed showtime capacity[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- Add 20 reservations for different customers and verify they are processed correctly[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 8 seconds, 610 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 15[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 6 seconds, 538 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 14[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 14, failed 1, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
-[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
-[0m[[0m[31merror[0m] [0m[0m	com.example.cinemaworld.AppDatabaseTests[0m
-[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 14, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com.example.cinemaworld.AppDatabaseTests[0m

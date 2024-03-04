@@ -12,7 +12,6 @@ import java.time.LocalDateTime
 class AppDatabaseTests extends AsyncFunSuite with BeforeAndAfter {
   implicit val ec: ExecutionContext = executionContext
 
-  // Assuming `db` is your test database instance, properly configured for tests
   val db = AppDatabase.db // Utilize the database instance from AppDatabase directly
 
   before {
@@ -203,9 +202,4 @@ test("Add 20 reservations for different customers and verify they are processed 
   }
 }
 
-
-
-
-
-  // Similar structure for other tests...
 }
