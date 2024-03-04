@@ -80,6 +80,16 @@ sbt test
 ^this will test business functioanlity
 
 ### Testing the API Endpoints
+make sure to have
+```bash
+
+psql -d cinema_world -U postgres -f init.sql
+```
+ran first to have the values in the table to populate
+then run 
+```bash
+sbt run
+```
 run this bash script in terminal to test the endpoint calls in conjunction with business logic
 Open a new terminal window and execute 
 ```bash
